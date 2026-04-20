@@ -19,3 +19,7 @@ Pada milestone ini, server sudah bisa membedakan request yang valid dan tidak va
 **Screenshot**
 
 ![Commit 3 screen capture](assets/images/commit3.png)
+
+## Commit 4 Reflection Notes
+
+Pada milestone ini, ditambahkan route `/sleep` yang sengaja ditunda 10 detik untuk mensimulasikan request yang lambat. Ketika membuka dua tab browser, satu mengakses `/sleep` dan satu mengakses `/`, tab kedua ikut menunggu 10 detik meskipun seharusnya langsung selesai. Hal ini terjadi karena server berjalan secara single-threaded, di mana `handle_connection` dipanggil langsung di main thread tanpa `thread::spawn` sehingga setiap request harus antri satu per satu. Ini adalah demonstrasi nyata kelemahan single-threaded server, bayangkan jika ada ratusan user mengakses bersamaan. Dari sini terlihat jelas mengapa concurrency sangat penting untuk membuat server yang responsif.
