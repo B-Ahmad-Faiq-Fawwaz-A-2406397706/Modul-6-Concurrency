@@ -25,6 +25,13 @@ impl ThreadPool {
         ThreadPool { workers, sender }
     }
 
+    pub fn build(size: usize) -> Result<ThreadPool, String> {
+        if size == 0 {
+            return Err(String::from("Size harus lebih dari 0!"));
+        }
+        Ok(ThreadPool::new(size))
+    }
+
     pub fn execute<F>(&self, f: F)
     where
         F: FnOnce() + Send + 'static,
