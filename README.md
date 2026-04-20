@@ -11,3 +11,11 @@ Pada milestone ini, server sudah bisa mengirimkan halaman HTML yang bisa dirende
 **Screenshot**
 
 ![Commit 2 screen capture](assets/images/commit2.png)
+
+## Commit 3 Reflection Notes
+
+Pada milestone ini, server sudah bisa membedakan request yang valid dan tidak valid. Server membaca baris pertama HTTP request untuk mengetahui URL yang diminta, lalu memutuskan file mana yang harus dikirim sebagai response. Refactoring dilakukan dengan memisahkan bagian penentuan status_line dan filename ke dalam blok if/else tersendiri, sehingga bagian pengiriman response (membaca file, menghitung panjang, menulis ke stream) hanya ditulis sekali dan tidak duplikat. Tanpa refactoring ini, setiap kondisi harus menulis ulang seluruh logika pengiriman response yang membuat kode lebih panjang dan susah dimaintain. Dengan pemisahan ini kode menjadi lebih bersih, lebih mudah dibaca, dan jika ada perubahan pada cara pengiriman response cukup diubah di satu tempat saja.
+
+**Screenshot**
+
+![Commit 3 screen capture](assets/images/commit3.png)
